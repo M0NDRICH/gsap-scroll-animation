@@ -39,12 +39,23 @@ mm.add({
     isDesktop: "(min-width: 501px) and (prefers-reduced-motion: no-preference)"
 }, (context)=>{
     console.log(context.conditions);
-    let {isMobile, isDesktop} = context.conditions;
+    let {isMobile, isDesktop, reducedMotion} = context.conditions;
 
     // let duration = context.isReverted ? 0 : 2;
 
     gsap.to(".box", {
-        rotation: isMobile ? -360 : 360,
+        // rotation: reducedMotion ? 0: isMobile ? -360 : 360,
+        rotation: () => {
+            rotation: () => {
+                if (reducedMotion) {
+                    return 0;
+                } else if (isMobile) {
+                    return -360;
+                } else if (!isMobile) {
+                    return 360;
+                }
+            }
+        },
         duration: 2,
     });
 })

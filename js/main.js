@@ -18,30 +18,33 @@ document.querySelector(".box").innerHTML = "BOO!";
 //         });
 
 let mm = gsap.matchMedia();
-mm.add("(max-width: 500px)", () => {
+// mm.add("(max-width: 500px)", () => {
 
-    let tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: '.box',
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true
-        }
+//     gsap.to(".box", {
+//         rotation: 360,
+//         duration: 2
+//     })
+// });
+
+// mm.add("(min-width: 501px)", () => {
+
+//     gsap.to(".box", {
+//         rotation: -360,
+//         duration: 2
+//     })
+// });
+
+mm.add({
+    isMobile: "(max-width: 500px) and (prefers-reduced-motion: no-preference)",
+    isDesktop: "(min-width: 501px) and (prefers-reduced-motion: no-preference)"
+}, (context)=>{
+    console.log(context.conditions);
+    let {isMobile, isDesktop} = context.conditions;
+
+    // let duration = context.isReverted ? 0 : 2;
+
+    gsap.to(".box", {
+        rotation: isMobile ? -360 : 360,
+        duration: 2,
     });
-
-    // gsap.to(".box", {
-    //     rotation: 360,
-    //     ease: 'none',
-    //     repeat: -1,
-    //     duration: 2
-    // });
-
-    tl.to(".box", {
-        rotation: 360,
-        duration: 2
-    })
-    .to(".box", {
-        scale: 2,
-        duration: 1
-    })
-});
+})

@@ -1,22 +1,10 @@
-let tl = gsap.timeline({ repeat: -1, repeatDelay: 5});
 
-tl.to('.box', {
-    x: 500,
-    rotate: 360,
-    duration: 2
-})
-.to('.box', {
-    y: 500,
-    rotate: "+=360",
-    duration: 2
-})
-.to('.box', {
-    x: 0,
-    rotate: "+=360",
-    duration: 2
-})
-.to('.box', {
-    y: 0,
-    rotate: "+=360",
-    duration: 2
-})
+
+gsap.to('.box', {
+    keyframes: {
+        x: [0, 500, 500, 0, 0],
+        y: [0, 0, 500, 500, 0],
+        ease: 'power4.out'
+    },
+    duration: 4,
+});

@@ -5,22 +5,37 @@
 }
 
 body{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 200vh;
+    min-height: 100vh;
     margin: 0;
     background-color: rgb(10, 5, 32);
-    flex-direction: column;
     gap: 25vh;
+    overflow-x: hidden;
+    /* width: 100vw; */
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width:fit-content;
 }
 
 .box{
     background-color: greenyellow;
-    width: 100px;
-    height: 100px;
+    width: 100vw;
+    height: 100vh;
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.a{
+    background-color: aqua;
+}
+.b{
+    background-color: blueviolet;
+}
+.c{
+    background-color: chocolate;
 }
